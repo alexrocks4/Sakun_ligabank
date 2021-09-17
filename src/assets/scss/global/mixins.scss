@@ -1,0 +1,29 @@
+@mixin font-primary {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-style: normal;
+}
+
+@mixin font-primary-400 {
+  @include font-primary;
+  font-weight: 400;
+}
+
+@mixin font-primary-500 {
+  @include font-primary;
+  font-weight: 500;
+}
+
+@mixin font-primary-700 {
+  @include font-primary;
+  font-weight: 700;
+}
+
+@mixin font-secondary {
+  font-family: "Work Sans", "Tahoma", sans-serif;
+  font-style: normal;
+}
+
+@mixin font-secondary-700 {
+  @include font-secondary;
+  font-weight: 700;
+}
