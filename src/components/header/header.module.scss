@@ -1,0 +1,17 @@
+.header {
+  margin: 0;
+  padding: 27px 0 25px 0;
+  min-height: 91px;
+  font-size: 16px;
+  line-height: 18.75px;
+}
+
+.header__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.header__main-nav {
+  margin-right: 150px;
+}

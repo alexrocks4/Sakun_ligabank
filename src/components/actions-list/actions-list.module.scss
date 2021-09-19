@@ -1,0 +1,46 @@
+.actions-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 0 0 0;
+  width: 203px;
+  list-style: none;
+}
+
+.actions-list__item {
+  margin-bottom: 10px;
+}
+
+.actions-list__link {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  padding-top: 2px;
+  padding-left: 30px;
+  width: 203px;
+  min-height: 22px;
+  text-decoration: none;
+  color: inherit;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("./login-icon.svg");
+    background-size: 20px 22px;
+    width: 20px;
+    height: 22px;
+    content: "";
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+

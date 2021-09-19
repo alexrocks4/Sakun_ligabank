@@ -13,24 +13,21 @@ function App() {
           <Redirect to={AppRoute.CONVERTER} />
         </Route>
         <Route exact path={AppRoute.SERVICES}>
-          <Redirect to={AppRoute.UNDER_CONSTRUCTION} />
+          <UnderConstructionScreen />
         </Route>
         <Route exact path={AppRoute.CREDIT}>
-          <Redirect to={AppRoute.UNDER_CONSTRUCTION} />
+          <UnderConstructionScreen />
         </Route>
         <Route exact path={AppRoute.CONVERTER}>
           <ConverterScreen />
         </Route>
         <Route exact path={AppRoute.CONTACTS}>
-          <Redirect to={AppRoute.UNDER_CONSTRUCTION} />
+          <UnderConstructionScreen />
         </Route>
         <Route exact path={AppRoute.QUESTION}>
-          <Redirect to={AppRoute.UNDER_CONSTRUCTION} />
+          <UnderConstructionScreen />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
-          <Redirect to={AppRoute.UNDER_CONSTRUCTION} />
-        </Route>
-        <Route exact path={AppRoute.UNDER_CONSTRUCTION}>
           <UnderConstructionScreen />
         </Route>
       </Switch>

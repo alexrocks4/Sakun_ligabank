@@ -1,0 +1,8 @@
+@import "../../assets/scss/variables.scss";
+
+.wrapper {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: $large-viewport-width;
+  padding: 0 $large-viewport-padding;
+}

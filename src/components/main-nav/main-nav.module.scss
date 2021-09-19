@@ -1,0 +1,40 @@
+@import "../../assets/scss/variables.scss";
+
+.main-nav {
+  margin: 0;
+  padding: 0;
+  width: 638px;
+  font-size: 16px;
+  line-height: 18.75px;
+}
+
+.main-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 0 -28px 0 0 ;
+  padding: 10px 0 0 28px;
+  list-style: none;
+}
+
+.main-nav__list-item {
+  margin: 0 28px 10px 0;
+  max-width: 150px;
+}
+
+.main-nav__link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.main-nav__link--active {
+  color: $color-primary;
+}
