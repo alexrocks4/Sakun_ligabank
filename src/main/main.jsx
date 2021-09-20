@@ -11,8 +11,11 @@ function Main({ children, className }) {
 }
 
 Main.propTypes = {
-  children: PropTypes.element,
   className: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]),
 };
 
 Main.defaultProps = {

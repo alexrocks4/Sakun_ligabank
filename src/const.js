@@ -7,3 +7,8 @@ export const AppRoute = {
   QUESTION: '/question',
   LOGIN: '/login',
 };
+
+export const ButtonRootElement = {
+  ROUTER_LINK: 'router-link',
+  BUTTON: 'button',
+};
