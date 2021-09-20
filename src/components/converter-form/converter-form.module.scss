@@ -1,0 +1,138 @@
+@import "../../assets/scss/variables.scss";
+
+.converter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.converter-form__fieldset {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 0 85px 0;
+  border: none;
+  padding: 0;
+  width: 525px;
+
+  &:first-child::before {
+    display: block;
+    position: absolute;
+    right: -89px;
+    top: 9px;
+    width: 53px;
+    height: 18px;
+    background-image: url("./arrow-left.svg");
+    content: "";
+  }
+
+  &:first-child::after {
+    display: block;
+    position: absolute;
+    right: -92px;
+    top: 27px;
+    width: 53px;
+    height: 18px;
+    background-image: url("./arrow-right.svg");
+    content: "";
+  }
+}
+
+.converter-form__legend {
+  margin-bottom: 24px;
+  width: 100%;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 30.8px;
+}
+
+.converter-form__amount-input {
+  box-sizing: border-box;
+  border: 1px solid $color-dark;
+  border-radius: 4px;
+  padding: 12px 26px;
+  width: 390px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 34px;
+  color: $color-dark-dark;
+}
+
+.converter-form__currency-select-container {
+  position: relative;
+
+  &::before {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    right: 18px;
+    top: 19px;
+    width: 12px;
+    height: 12px;
+    border-style: solid;
+    border-color: $color-dark;
+    border-width: 0 2px 2px 0;
+    content: "";
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+}
+.converter-form__currency-select {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid $color-dark;
+  border-radius: 4px;
+  padding: 8px 45px 8px 18px;
+  width: 120px;
+  font-size: 30px;
+  line-height: 42px;
+  color: $color-dark-dark;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.converter-form__date-label {
+  position: relative;
+
+  &::before {
+    display: block;
+    position: absolute;
+    right: 19px;
+    top: 6px;
+    width: 41px;
+    height: 44px;
+    background-image: url("./calendar.svg");
+    content: "";
+  }
+}
+
+.converter-form__date-input {
+  box-sizing: border-box;
+  border: 1px solid $color-dark;
+  border-radius: 4px;
+  padding: 14px 70px 10px 18px;
+  width: 390px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 34px;
+  color: $color-dark-dark;
+}
+
+.converter-form__button {
+  padding: 18px 40px 18px 40px;
+  width: 382px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25.2px;
+}
