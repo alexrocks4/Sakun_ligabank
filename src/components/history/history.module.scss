@@ -2,7 +2,6 @@
 
 .history {
   position: relative;
-  margin: 0 0 110px 0;
   padding: 42px 77px 40px 69px;
   background-color: $color-light;
   font-size: 18px;
@@ -15,7 +14,7 @@
     height: 289px;
     width: 1px;
     background-color: $color-light-special-2;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px $color-dark-special-3;
     content: "";
   }
 }

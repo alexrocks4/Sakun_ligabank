@@ -1,0 +1,25 @@
+.nav-list {
+  padding: 5px 0 0 0;
+  list-style: none;
+}
+
+.nav-list__list-item {
+  margin-bottom: 9px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.nav-list__link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
