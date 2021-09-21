@@ -8,7 +8,7 @@ function ConverterForm({ className }) {
   return (
     <form
       className={classNames(className, styles['converter-form'])}
-      action={''}
+      action={'#'}
       method="POST"
       onSubmit={(evt) => evt.preventDefault()}
     >
@@ -29,7 +29,7 @@ function ConverterForm({ className }) {
         </label>
         <label className={classNames(styles['converter-form__currency-label'])}>
           <span className="visually-hidden">Валюта</span>
-          <div className={classNames(styles['converter-form__currency-select-container'])}>
+          <span className={classNames(styles['converter-form__currency-select-container'])}>
             <select
               className={classNames(styles['converter-form__currency-select'])}
               name="currency-from"
@@ -40,7 +40,7 @@ function ConverterForm({ className }) {
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
             </select>
-          </div>
+          </span>
         </label>
       </fieldset>
 
@@ -60,7 +60,7 @@ function ConverterForm({ className }) {
         </label>
         <label className={classNames(styles['converter-form__currency-label'])}>
           <span className="visually-hidden">Валюта</span>
-          <div className={classNames(styles['converter-form__currency-select-container'])}>
+          <span className={classNames(styles['converter-form__currency-select-container'])}>
             <select
               className={classNames(styles['converter-form__currency-select'])}
               name="currency-to"
@@ -71,7 +71,7 @@ function ConverterForm({ className }) {
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
             </select>
-          </div>
+          </span>
         </label>
       </fieldset>
 

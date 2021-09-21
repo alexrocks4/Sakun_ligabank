@@ -1,0 +1,119 @@
+@import "../../assets/scss/variables.scss";
+
+.history {
+  position: relative;
+  margin: 0 0 110px 0;
+  padding: 42px 77px 40px 69px;
+  background-color: $color-light;
+  font-size: 18px;
+  line-height: 23.4px;
+
+  &::before {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    height: 289px;
+    width: 1px;
+    background-color: $color-light-special-2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    content: "";
+  }
+}
+
+.history__title {
+  margin: 0 0 50px 0;
+  padding: 0;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 39.2px;
+}
+
+.history__table {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 0 48px 0;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.history__table-body {
+  max-width: 50%;
+  min-height: 207px;
+}
+
+.history__table-row {
+  margin: 0;
+  padding: 0 0 33px 0;
+  border: none;
+}
+
+.history__table-row:last-child .history__table-cell {
+  padding-bottom: 0;
+}
+
+.history__table-cell {
+  margin: 0;
+  padding: 0 0 23px 0;
+  word-break: break-all;
+  vertical-align: top;
+}
+
+.history__table-left-body .history__table-cell:last-child {
+  padding-right: 30px;
+}
+
+.history__table-right-body .history__table-cell:first-child {
+  padding-left: 30px;
+}
+
+.history__date-column {
+  padding-right: 39px;
+  width: 92px;
+}
+
+.history__table-left-body .history__amount-from-column,
+.history__table-left-body .history__amount-to-column {
+  padding-right: 5px;
+  min-width: 40px;
+  max-width: 120px;
+}
+
+.history__currency-from-column,
+.history__currency-to-column {
+  width: 40px;
+}
+
+.history__currency-from-column {
+  position: relative;
+  padding-right: 60px;
+
+  &::before {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    width: 41px;
+    height: 18px;
+    background-image: url("./arrow-right.svg");
+    content: "";
+  }
+}
+
+.history__table-right-body .history__amount-from-column,
+.history__table-right-body .history__amount-to-column
+ {
+  padding-right: 4px;
+  min-width: 38px;
+  max-width: 120px;
+}
+
+.history__button {
+  padding: 17px;
+  width: 199px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.75px;
+}
