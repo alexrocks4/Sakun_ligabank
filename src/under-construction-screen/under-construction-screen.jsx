@@ -6,7 +6,7 @@ function UnderConstructionScreen() {
   return (
     <Main className={styles['under-construction']}>
       <h1 className={styles['under-construction__title']}>
-        Страница находится в стадии разработки
+        Страница в разработке
       </h1>
     </Main>
   );
