@@ -12,3 +12,13 @@ export const ButtonRootElement = {
   ROUTER_LINK: 'router-link',
   BUTTON: 'button',
 };
+
+export const Currency = {
+  RUB: 'RUB',
+  USD: 'USD',
+  EUR: 'EUR',
+  GBP: 'GBP',
+  CNY: 'CNY',
+};
+
+export const PERIOD_IN_DAYS = 7;
