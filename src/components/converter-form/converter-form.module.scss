@@ -62,6 +62,11 @@
   font-weight: 500;
   line-height: 34px;
   color: $color-dark-dark;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .converter-form__currency-select-container {
@@ -101,6 +106,10 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .converter-form__date-label {
@@ -115,6 +124,7 @@
     height: 44px;
     background-image: url("./calendar.svg");
     content: "";
+    pointer-events: none;
   }
 }
 
@@ -128,6 +138,15 @@
   font-size: 24px;
   line-height: 34px;
   color: $color-dark-dark;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.converter-form__date-input--no-data {
+  color: $color-warning;
+  border-color: $color-warning;
 }
 
 .converter-form__button {

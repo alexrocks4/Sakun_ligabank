@@ -13,9 +13,10 @@ import 'flatpickr/dist/themes/airbnb.css';
 
 const DEFAULT_CURRENCY_FROM = Currency.RUB;
 const DEFAULT_CURRENCY_TO = Currency.USD;
-const DEFAULT_AMOUNT_FROM = 1000;
+const DEFAULT_AMOUNT_FROM = 0;
 const DEFAULT_AMOUNT_TO = 0;
 const API_DAY_FORMAT = 'YYYY-MM-DD';
+const EQUAL_CURRENCIES_RATE = 1;
 
 function ConverterForm({ className }) {
   const currentDate = dayjs().format(API_DAY_FORMAT);
@@ -29,35 +30,30 @@ function ConverterForm({ className }) {
 
   //const currencyFromRate = useSelector((state) => selectCurrencyRate(state, currencyFrom, currencyTo, currencyDate));
   //const currencyToRate = useSelector((state) => selectCurrencyRate(state, currencyTo, currencyFrom, currencyDate));
-  const currencyFromRate = data?.[currencyFrom]?.[currencyDate]?.[currencyTo] ?? null;
-  const amountFromComputed = currencyFromRate === null ? amountFrom : amountTo / currencyFromRate;
-  const amountToComputed = currencyFromRate === null ? amountTo : currencyFromRate * amountFrom;
+  const enabledDates = Object.keys(data?.[currencyFrom] ?? []);
+  const currencyFromRate = currencyFrom === currencyTo
+    ? EQUAL_CURRENCIES_RATE
+    : data?.[currencyFrom]?.[currencyDate]?.[currencyTo] ?? null;
+
+  const currentDateCurrenciesTo = data?.[currencyFrom]?.[currencyDate] ?? {};
+  const amountToComputed = currencyFromRate === null ? amountTo : (currencyFromRate * amountFrom).toFixed(2);
   const isDataNotAvailable = currencyFromRate === null;
+
   const amountFromChangeHandler = ({ target }) => {
     setAmountFrom(target.value);
   };
 
   const amountToChangeHandler = ({ target }) => {
-    setAmountTo(target.value);
+    setAmountFrom((target.value / currencyFromRate).toFixed(2));
   };
 
   const currencyDateChangeHandler = (date) => {
     setCurrencyDate(dayjs(date[0]).format(API_DAY_FORMAT));
-    // eslint-disable-next-line no-console
-    console.log(currencyFromRate);
-    // eslint-disable-next-line no-console
-    console.log(currencyFrom);
-    // eslint-disable-next-line no-console
-    console.log(currencyDate);
-    // eslint-disable-next-line no-console
-    console.log(currencyTo);
   };
 
   const currencyFromChangeHandler = ({ target }) => {
     setCurrencyFrom(target.value);
     setAmountTo(currencyFromRate * amountFrom);
-    // eslint-disable-next-line no-console
-    //console.log(currencyFromRate);
   };
 
   if (isFetching || isUninitialized) {
@@ -85,8 +81,9 @@ function ConverterForm({ className }) {
           <input
             className={classNames(styles['converter-form__amount-input'])}
             type="number"
+            min="0"
             name="amountFrom"
-            value={amountFromComputed}
+            value={amountFrom}
             onChange={amountFromChangeHandler}
             disabled={isDataNotAvailable}
           />
@@ -123,6 +120,7 @@ function ConverterForm({ className }) {
           <input
             className={classNames(styles['converter-form__amount-input'])}
             type="number"
+            min="0"
             name="amountTo"
             value={amountToComputed}
             onChange={amountToChangeHandler}
@@ -143,6 +141,7 @@ function ConverterForm({ className }) {
                 <option
                   key={currencyValue}
                   value={currencyValue}
+                  disabled={!currentDateCurrenciesTo[currencyValue]}
                 >
                   {currencyValue}
                 </option>
@@ -155,12 +154,17 @@ function ConverterForm({ className }) {
       <label className={classNames(styles['converter-form__date-label'])}>
         <span className="visually-hidden">Дата курса валют</span>
         <Flatpickr
-          className={classNames(styles['converter-form__date-input'])}
+          className={classNames(styles['converter-form__date-input'],
+            {
+              [styles['converter-form__date-input--no-data']]: isDataNotAvailable,
+            })}
           onChange={currencyDateChangeHandler}
           options={{
             minDate: dayjs(currentDate).subtract(PERIOD_IN_DAYS, 'day').format(),
             maxDate: currentDate,
             defaultDate: currencyDate,
+            enable: enabledDates,
+            allowInvalidPreload: true,
           }}
         />
       </label>
@@ -168,6 +172,7 @@ function ConverterForm({ className }) {
       <ButtonPrimary
         className={classNames(styles['converter-form__button'])}
         type="submit"
+        disabled={isDataNotAvailable}
       >
         Сохранить разультат
       </ButtonPrimary>
