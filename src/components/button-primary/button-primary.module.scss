@@ -3,9 +3,4 @@
 .button-primary {
   background-color: $color-primary;
   color: $color-light;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
 }

@@ -94,6 +94,7 @@ function History({ className }) {
         className={classNames(styles['history__button'])}
         type="button"
         onClick={handleButtonClick}
+        disabled={!historyItems.length}
       >
         Очистить историю
       </ButtonPrimary>
