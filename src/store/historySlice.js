@@ -8,10 +8,10 @@ const historySlice = createSlice({
   reducers: {
     historyItemAdded: {
       reducer(state, { payload }) {
-        state.push(payload);
+        state.unshift(payload);
 
         if (state.length > MAX_ENTRIES) {
-          state.shift();
+          state.pop();
         }
       },
       prepare(payload) {
@@ -24,16 +24,19 @@ const historySlice = createSlice({
       },
     },
 
-    historyCleared(state) {
-      state = [];
+    historyCleared() {
+      return [];
     },
   },
 });
+
+const selectHistoryItems = (state) => state.history;
 
 const { historyItemAdded, historyCleared } = historySlice.actions;
 
 export {
   historySlice,
   historyItemAdded,
-  historyCleared
+  historyCleared,
+  selectHistoryItems
 };

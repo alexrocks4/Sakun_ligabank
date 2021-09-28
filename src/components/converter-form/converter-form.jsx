@@ -63,7 +63,7 @@ function ConverterForm({ className }) {
     evt.preventDefault();
 
     dispatch(historyItemAdded({
-      currencyDate,
+      date: currentDate,
       amountFrom,
       currencyFrom,
       amountTo: amountToComputed,
