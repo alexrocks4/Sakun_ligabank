@@ -10,6 +10,8 @@ import { Currency, PERIOD_IN_DAYS } from '../../const';
 //import { selectCurrencyRate } from '../../store/apiSlice';
 import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/themes/airbnb.css';
+import { useDispatch } from 'react-redux';
+import { historyItemAdded } from '../../store/historySlice';
 
 const DEFAULT_CURRENCY_FROM = Currency.RUB;
 const DEFAULT_CURRENCY_TO = Currency.USD;
@@ -25,6 +27,7 @@ function ConverterForm({ className }) {
   const [ currencyTo, setCurrencyTo ] = useState(DEFAULT_CURRENCY_TO);
   const [ amountFrom, setAmountFrom ] = useState(DEFAULT_AMOUNT_FROM);
   const [ amountTo, setAmountTo ] = useState(DEFAULT_AMOUNT_TO);
+  const dispatch = useDispatch();
 
   const { isFetching, isError, isUninitialized, data } = useFetchCurrenciesDataQuery(currentDate);
 
@@ -36,7 +39,7 @@ function ConverterForm({ className }) {
     : data?.[currencyFrom]?.[currencyDate]?.[currencyTo] ?? null;
 
   const currentDateCurrenciesTo = data?.[currencyFrom]?.[currencyDate] ?? {};
-  const amountToComputed = currencyFromRate === null ? amountTo : (currencyFromRate * amountFrom).toFixed(2);
+  const amountToComputed = currencyFromRate === null ? amountTo : parseFloat((currencyFromRate * amountFrom).toFixed(2));
   const isDataNotAvailable = currencyFromRate === null;
 
   const amountFromChangeHandler = ({ target }) => {
@@ -44,7 +47,7 @@ function ConverterForm({ className }) {
   };
 
   const amountToChangeHandler = ({ target }) => {
-    setAmountFrom((target.value / currencyFromRate).toFixed(2));
+    setAmountFrom(parseFloat((target.value / currencyFromRate).toFixed(2)));
   };
 
   const currencyDateChangeHandler = (date) => {
@@ -53,7 +56,19 @@ function ConverterForm({ className }) {
 
   const currencyFromChangeHandler = ({ target }) => {
     setCurrencyFrom(target.value);
-    setAmountTo(currencyFromRate * amountFrom);
+    setAmountTo(parseFloat((currencyFromRate * amountFrom).toFixed(2)));
+  };
+
+  const handleFormSubmit = (evt) => {
+    evt.preventDefault();
+
+    dispatch(historyItemAdded({
+      currencyDate,
+      amountFrom,
+      currencyFrom,
+      amountTo: amountToComputed,
+      currencyTo,
+    }));
   };
 
   if (isFetching || isUninitialized) {
@@ -69,7 +84,7 @@ function ConverterForm({ className }) {
       className={classNames(className, styles['converter-form'])}
       action={'#'}
       method="POST"
-      onSubmit={(evt) => evt.preventDefault()}
+      onSubmit={handleFormSubmit}
     >
 
       <fieldset className={classNames(styles['converter-form__fieldset'])}>
@@ -82,6 +97,7 @@ function ConverterForm({ className }) {
             className={classNames(styles['converter-form__amount-input'])}
             type="number"
             min="0"
+            step="0.01"
             name="amountFrom"
             value={amountFrom}
             onChange={amountFromChangeHandler}
@@ -121,6 +137,7 @@ function ConverterForm({ className }) {
             className={classNames(styles['converter-form__amount-input'])}
             type="number"
             min="0"
+            step="0.01"
             name="amountTo"
             value={amountToComputed}
             onChange={amountToChangeHandler}
