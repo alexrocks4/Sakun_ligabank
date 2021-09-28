@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const MAX_ENTRIES = 10;
 
@@ -6,12 +6,22 @@ const historySlice = createSlice({
   name: 'history',
   initialState: [],
   reducers: {
-    historyItemAdded(state, { payload }) {
-      state.push(payload);
+    historyItemAdded: {
+      reducer(state, { payload }) {
+        state.push(payload);
 
-      if (state.length > MAX_ENTRIES) {
-        state.shift();
-      }
+        if (state.length > MAX_ENTRIES) {
+          state.shift();
+        }
+      },
+      prepare(payload) {
+        return {
+          payload: {
+            ...payload,
+            id: nanoid(),
+          },
+        };
+      },
     },
 
     historyCleared(state) {
