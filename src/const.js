@@ -21,4 +21,8 @@ export const Currency = {
   CNY: 'CNY',
 };
 
+export const LocalStorageKey = {
+  HISTORY: 'ligabank_history',
+};
+
 export const PERIOD_IN_DAYS = 7;
